@@ -1,0 +1,59 @@
+version: '3.7'
+
+services:
+
+  database:
+    container_name: "${COMPOSE_PROJECT_NAME}-database"
+    image: postgres:12
+    volumes:
+      - ./data/database:/var/lib/postgresql/data
+    #ports:
+    #  - 5432:5432
+    environment:
+      POSTGRES_USER: '${POSTGRES_USER}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
+      POSTGRES_DB: '${POSTGRES_DB}'
+    networks:
+      - directus
+
+  cache:
+    container_name: "${COMPOSE_PROJECT_NAME}-cache"
+    image: redis:6
+    #ports:
+    #  - 6379:6379
+    networks:
+      - directus
+
+  directus:
+    container_name: "${COMPOSE_PROJECT_NAME}-directus"
+    image: 'directus/directus:${DIRECTUS_TAG}'
+    environment:
+      KEY: '255d861b-5ea1-5996-9aa3-922530ec40b1'
+      SECRET: '6116487b-cda1-52c2-b5b5-c8022c45e263'
+      DB_CLIENT: 'pg'
+      DB_HOST: 'database'
+      DB_PORT: '5432'
+      DB_DATABASE: '${POSTGRES_DB}'
+      DB_USER: '${POSTGRES_USER}'
+      DB_PASSWORD: '${POSTGRES_PASSWORD}'
+      CACHE_ENABLED: 'true'
+      CACHE_STORE: 'redis'
+      CACHE_REDIS: 'redis://cache:6379'
+      ADMIN_EMAIL: '${ADMIN_EMAIL}'
+      ADMIN_PASSWORD: '${ADMIN_PASSWORD}'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-directus.entrypoints=https"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-directus.rule=Host(`${APP_HOST}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-directus.tls=true"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}-directus.loadbalancer.server.port=8055"
+      - "traefik.docker.network=stonehenge-network"
+    networks:
+      - directus
+      - stonehenge-network
+
+networks:
+  directus:
+    external: false
+  stonehenge-network:
+    external: true
