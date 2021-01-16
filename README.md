@@ -1,5 +1,9 @@
 # Directus Starter
 
+Quick starter repo for setting up [Directus](https://directus.io/) based data platform.
+
+It's a headless CMS around database with REST and GraphQL APIs.
+
 ## Requirements
 
 - Stonehenge
