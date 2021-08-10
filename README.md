@@ -11,31 +11,31 @@ It's a headless CMS around database with REST and GraphQL APIs.
 ## Setup
 
 ```
-$ make up
+make up
 ```
 
 ## Import directus.sql
 
 ```
-$ make restore
+make restore
 ```
 
-Now open https://directus.docker.sh and login with `admin@example.com:password`
+Now open https://directus.docker.so and login with `admin@example.com:password`
 
 ## API
 
-`https://directus.docker.sh/collections/`
+`https://directus.docker.so/collections/`
 
 ## Backups
 
 Backup local database:
 
 ```
-$ make backup
+make backup
 ```
 
 Restore database:
 
 ```
-$ make restore
+make restore
 ```
