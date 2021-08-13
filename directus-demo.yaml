@@ -1,0 +1,65 @@
+databases:
+- cluster_name: fra-db-dev-1
+  db_name: directus
+  db_user: directus
+  engine: MYSQL
+  name: fra-db-dev-1
+  production: true
+  version: "8"
+name: directus-demo
+region: fra
+services:
+- envs:
+  - key: DB_USER
+    scope: RUN_AND_BUILD_TIME
+    value: directus
+  - key: DB_PASSWORD
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: EV[1:isGg5HSxIVwC0NKLA7RWrT5LSsqjfSk8:N7uFcSwVEzE+f7PD8H8WWS9NjS6t7wxGe9zChzJeUXU=]
+  - key: DB_HOST
+    scope: RUN_AND_BUILD_TIME
+    value: fra-db-dev-1-do-user-995659-0.a.db.ondigitalocean.com
+  - key: DB_PORT
+    scope: RUN_AND_BUILD_TIME
+    value: "25060"
+  - key: DB_CLIENT
+    scope: RUN_AND_BUILD_TIME
+    value: mysql
+  - key: ADMIN_EMAIL
+    scope: RUN_AND_BUILD_TIME
+    value: accounts@druid.fi
+  - key: ADMIN_PASSWORD
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: EV[1:Fsqog/145bZS7HE/vSnKjGt2nFQy73sR:neLA0xpBGvsF2/l7xd7TrvNadzn5dAnaXopVPzd0Yt24]
+  - key: KEY
+    scope: RUN_AND_BUILD_TIME
+    value: 255d861b-5ea1-5996-9aa3-922530ec40b1
+  - key: SECRET
+    scope: RUN_AND_BUILD_TIME
+    value: 6116487b-cda1-52c2-b5b5-c8022c45e263
+  - key: DB_DATABASE
+    scope: RUN_AND_BUILD_TIME
+    value: directus
+  - key: DB_SSL__REJECT_UNAUTHORIZED
+    scope: RUN_AND_BUILD_TIME
+    value: "true"
+  - key: DB_SSL__CA
+    scope: RUN_AND_BUILD_TIME
+    value: ${fra-db-dev-1.CA_CERT}
+  - key: DATABASE_URL
+    scope: RUN_TIME
+    value: ${fra-db-dev-1.DATABASE_URL}
+  http_port: 8055
+  image:
+    registry: directus
+    registry_type: DOCKER_HUB
+    repository: directus
+    tag: 9.0.0-rc.89
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: directus-demo
+  routes:
+  - path: /
+  source_dir: /
