@@ -17,4 +17,12 @@ PHONY += up
 up: ## Start containers
 	docker-compose up -d
 
+PHONY += create-app
+create-app: ## Create app in DO App Platform
+	doctl apps create --spec directus-demo.yaml
+
+PHONY += update-app
+update-app: ## Update app in DO App Platform
+	doctl apps update $(DO_APP_ID) --spec directus-demo.yaml
+
 .PHONY: $(PHONY)
