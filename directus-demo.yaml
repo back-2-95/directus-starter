@@ -16,7 +16,7 @@ services:
   - key: DB_PASSWORD
     scope: RUN_AND_BUILD_TIME
     type: SECRET
-    value: EV[1:isGg5HSxIVwC0NKLA7RWrT5LSsqjfSk8:N7uFcSwVEzE+f7PD8H8WWS9NjS6t7wxGe9zChzJeUXU=]
+    value: EV[1:9BDNsS/62x8XyZe71bEbZqp+TzSuyGk0:4S7xUb7LeiODBPO3sF3iKBMLHLPE5JzNXYZCd4fbW/c=]
   - key: DB_HOST
     scope: RUN_AND_BUILD_TIME
     value: fra-db-dev-1-do-user-995659-0.a.db.ondigitalocean.com
@@ -32,7 +32,7 @@ services:
   - key: ADMIN_PASSWORD
     scope: RUN_AND_BUILD_TIME
     type: SECRET
-    value: EV[1:Fsqog/145bZS7HE/vSnKjGt2nFQy73sR:neLA0xpBGvsF2/l7xd7TrvNadzn5dAnaXopVPzd0Yt24]
+    value: EV[1:gfIHrRv3Dyi40sqDSANIGZxqPyn0YjE4:BKJznNTyAgolsGv3ADk0o2UvjqVLGkvVUGW0RB7m5WQn]
   - key: KEY
     scope: RUN_AND_BUILD_TIME
     value: 255d861b-5ea1-5996-9aa3-922530ec40b1
